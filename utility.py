@@ -48,7 +48,10 @@ def get_eu_overview(records_list, countries_list, data_list):
         data_list.append({"country": country, "data": {"second dose": second_dose, "population": population, "rate": rate, "color": color}})
     return data_list
 
-def get_overview_by_contry(country, list_data):
-    return next(filter(lambda item: item["country"] == country, list_data))
+def get_color_by_country(country, data_list):
+    return next(filter(lambda item: item["country"] == country, data_list))['data']['color']
 
+def get_summary_by_country(country, data_list):
+    rate = next(filter(lambda item: item["country"] == country, data_list))['data']['rate']
+    return f'{country}: {rate}%'
 
