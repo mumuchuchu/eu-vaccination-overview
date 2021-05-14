@@ -11,7 +11,7 @@ def get_map_template(date, data_list):
                 </head>
                 <body style="font-family: Helvetica, sans-serif">
                     <div style="width: 100%%; text-align: center; margin: 24px auto">
-                        <h1 style="margin-button: 48px">EU Vaccination Overview: %(date)s</h1>
+                        <h1>EU Vaccination Overview: %(date)s</h1>
                         <div style="width: 584px; height: 24px; background: linear-gradient(90deg, #d7ffec, #5c9482, #004432); position:relative; margin: 16px auto">
                             <span style="position:absolute; left:0; bottom:-24px">0%%</span>
                             <span style="position:absolute; right:0; bottom:-24px">100%%</span>
