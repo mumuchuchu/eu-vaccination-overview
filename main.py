@@ -1,5 +1,5 @@
 import requests
-from utility import get_eu_overview
+from utilities import get_eu_overview
 from eu_map import get_map_template
 
 URL = 'https://opendata.ecdc.europa.eu/covid19/vaccine_tracker/json'
