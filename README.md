@@ -1,4 +1,4 @@
-##EU Vaccination Overview
+## EU Vaccination Overview
 
 Fetch data from website https://www.ecdc.europa.eu/en/publications-data/data-covid-19-vaccination-eu-eea, sort it and output an overview in html
 
