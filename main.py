@@ -1,7 +1,9 @@
 import requests
-from utility import get_country_list, get_eu_overview
+from utility import get_eu_overview
 from eu_map import get_map_template
-from datetime import date
+
+URL = 'https://opendata.ecdc.europa.eu/covid19/vaccine_tracker/json'
+OUTPUT_FILE_NAME = 'index.html'
 
 def read_data_from_web(url):
     try:
@@ -13,28 +15,19 @@ def read_data_from_web(url):
         return response.json()
 
 def process_data(data):
-    records = (data["records"])
-    countries_list = []
-    eu_data_list = []
-    today = date.today().strftime("%b %d %Y")
-
-    get_country_list(records, countries_list)
-    overview_data = get_eu_overview(records, countries_list, eu_data_list)
-     # Generate map in html
-    output = get_map_template(today, overview_data)
+    overview_data = get_eu_overview(data)
+    # Generate map in html
+    output = get_map_template(overview_data)
     return output
 
 def write_data_to_file(data):
-    with open('index.html','w') as f:
-        html = data
-        f.write(html)
+    with open(OUTPUT_FILE_NAME,'w') as f:
+        f.write(data)
 
 def main():
-    # fetch data (json) from website
-    url = 'https://opendata.ecdc.europa.eu/covid19/vaccine_tracker/json'
-    data = read_data_from_web(url)
-    map = process_data(data)
-    write_data_to_file(map)
+    data = read_data_from_web(URL)["records"]
+    modified_data = process_data(data)
+    write_data_to_file(modified_data)
 
 if __name__ == '__main__':
     main()
