@@ -20,8 +20,9 @@ def get_eu_overview(records, countries, colors, default_color):
     for country, record in groupby(records, lambda record: record['ReportingCountry']):
         second_dose = 0
         for record in list(record):
-            second_dose += record["SecondDose"]
-            population = record["Population"]
+            if record["TargetGroup"] == "ALL":
+                second_dose += record["SecondDose"]
+                population = record["Population"]
         rate = round(second_dose/ int(population) * 100)
         color = generate_color_for_country(rate, colors)
         generate_overview(country, countries, rate, color, overview)
